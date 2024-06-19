@@ -1,0 +1,50 @@
+{% extends 'base.html' %} {% block content %}
+
+<section class="section-padding pb-0" id="timeline">
+  <div class="container">
+    <div class="row">
+      <h4 class="text-center">Кабинет пациента {{ request.user.full_name }}</h4>
+
+    {% for assignment in assignments %}
+      <div class="card text-center">
+          <a href="{% url 'main:assignments_cabinet' assignment_id=assignment.id %}" class="patient">
+            <div class="card-header">Врач №{{ assignment.doctor.id }}</div>
+          </a>
+          <div class="card-body">
+            <h5 class="card-title">{{ assignment.doctor.full_name }}</h5>
+            <p class="card-text">Почта: {{ assignment.doctor.email }}</p>
+            <p class="card-text">Телефон: {{ assignment.doctor.phone }}</p>
+            <p class="card-text">
+              Дата рождения: {{ assignment.doctor.birthday }}
+            </p>
+            <p class="card-text">Адрес: {{ assignment.doctor.address }}</p>
+            <a href="{% url 'main:assignments_cabinet' assignment_id=assignment.id %}" class="btn btn-dark">Открыть карточку</a>
+          </div>
+          <div class="card-footer text-muted">{{ assignment.assigned_at }}</div>
+        </div>
+      {% empty %}
+      <p class="text-center">Вы пока не зарегистрированны на лечение</p>
+      {% endfor %}
+     
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+
+  a.patient:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  div.card {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  div.card:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+</style>
+
+{% endblock %}

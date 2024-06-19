@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section-padding pb-0" id="timeline">
+    <div class="container">
+        <div class="row">
+            <h4 class="text-center">
+                Вы авторизованы как администратор. Перейдите в <a href="{% url 'admin:index' %}">админ сайт</a> или войдите в один из кабинетов: <br>
+                <a href="{% url 'main:doctor_cabinet' %}">кабинет врача</a> или <a href="{% url 'main:patient_cabinet' %}">кабинет пациента</a>
+            </h4>
+        </div>
+    </div>
+</section>
+{% endblock %}

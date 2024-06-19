@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section-padding" id="booking">
+    <div class="container">
+        <div class="row">
+        
+            <div class="col-lg-8 col-12 mx-auto">
+                <div class="booking-form">
+                    
+                    <h2 class="text-center mb-lg-3 mb-2">Профиль</h2>
+                
+                    <form role="form" action="{% url 'users:update' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.full_name.errors }}</p>
+                                <input type="text" name="full_name" id="full_name" class="form-control" placeholder="ФИО" value="{% if form.full_name.value is not None %}{{ form.full_name.value }}{% endif %}" required>
+                            </div>
+
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.birthday.errors }}</p>
+                                <input type="date" name="birthday" id="birthday" class="form-control" value="{{ form.birthday.value }}">
+                            </div>
+                            
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.phone.errors }}</p>
+                                <input type="text" name="phone" id="phone" class="form-control" placeholder="Номер телефона" value="{% if form.phone.value is not None %}{{ form.phone.value }}{% endif %}">
+                                </div>
+
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.address.errors }}</p>
+                                <input type="text" name="address" id="address" class="form-control" placeholder="Адрес" value="{% if form.address.value is not None %}{{ form.address.value }}{% endif %}">
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-4 col-6 mx-auto">
+                                <button type="submit" class="form-control" id="submit-button">Сохранить</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

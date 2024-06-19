@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="section-padding" id="booking">
+    <div class="container">
+        <div class="row">
+        
+            <div class="col-lg-8 col-12 mx-auto">
+                <div class="booking-form">
+                    
+                    <h2 class="text-center mb-lg-3 mb-2">Регистрация</h2>
+                
+                    <form role="form" action="{% url 'users:register' %}" method="post">
+                        {% csrf_token %}
+                        <div class="row">
+
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.full_name.errors }}</p>
+                                <input type="text" name="full_name" id="full_name" class="form-control" placeholder="ФИО" required>
+                            </div>
+
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.email.errors }}</p>
+                                <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Почта" required>
+                            </div>
+                            
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.password1.errors }}</p>
+                                <input type="password" name="password1" id="password" class="form-control" placeholder="Пароль" required>
+                                </div>
+
+                            <div class="col-lg-12 col-12">
+                                <p>{{ form.password2.errors }}</p>
+                                <input type="password" name="password2" id="password" class="form-control" placeholder="Подтверждение пароля" required>
+                            </div>
+
+
+                            <div class="col-lg-3 col-md-4 col-6 mx-auto">
+                                <button type="submit" class="form-control" id="submit-button">Регистрация</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="col-lg-3 col-md-4 col-6 mx-auto">
+                        <a href="{% url 'users:login' %}">
+                        <button  class="form-control" id="submit-button">Войти в аккаунт</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

@@ -9,6 +9,9 @@ RUN apt-get update && apt-get install -y \
     libblas-dev \
     liblapack-dev \
     gfortran \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    curl \
     && apt-get clean
 
 WORKDIR /app
@@ -18,8 +21,7 @@ RUN pip install gunicorn
 ADD ../../requirements.txt /app/requirements.txt
 RUN pip install -r /app/requirements.txt
 
-COPY ../.././ /app/backend
-COPY ../../docker /app/docker
+COPY . .
 
 RUN chmod +x /app/docker/backend/server-entrypoint.sh
 RUN chmod +x /app/docker/backend/worker-entrypoint.sh
